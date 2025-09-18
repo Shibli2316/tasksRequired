@@ -4,15 +4,13 @@ process_meds.py
 Load prescriptions.csv, parse medication text into structured fields,
 and save prescriptions_clean.csv.
 
-Usage:
-    python process_meds.py
 """
-
+# importing regular expressions and pandas for data manipulation and pathlib for file path handling
 import re
 import pandas as pd
 from pathlib import Path
 
-# Input/Output paths
+# Input/Output paths. It should be in the same folder as this script.
 IN_PATH = Path("prescriptions.csv")
 OUT_PATH = Path("prescriptions_clean.csv")
 
@@ -29,18 +27,28 @@ INGREDIENT_MAPPING = {
     "diclofenac": "Diclofenac",
 }
 
-# Words that imply topical drugs (skip dosage parsing for these)
+# skip dosage parsing for these
 TOPICAL_TERMS = {"gel", "cream", "ointment", "spray", "patch", "lotion", "solution"}
 
+
+# The functions below parse and standardize the medication text field. removes any text in parentheses.
 def remove_parentheses(text: str) -> str:
     return re.sub(r"\(.*?\)", "", text)
 
+
+# Replaces multiple whitespace characters with a single space and trims leading/trailing spaces.
 def normalize_whitespace(text: str) -> str:
     return re.sub(r"\s+", " ", text).strip()
 
+
+
+# Detect if the medication is topical based on keywords.
 def detect_topical(text: str) -> bool:
     return any(term in text.lower() for term in TOPICAL_TERMS)
 
+
+
+# Standardizes the active ingredient name from the medication text.
 def standardize_active_ingredient(text: str) -> str:
     t = remove_parentheses(text)
     t = normalize_whitespace(t)
@@ -64,6 +72,11 @@ def standardize_active_ingredient(text: str) -> str:
         return INGREDIENT_MAPPING[candidate]
     return candidate.replace("-", " ").title()
 
+
+
+
+
+# Extracts dosage and unit from the medication text.
 def extract_dosage_and_unit(text: str):
     if detect_topical(text):
         return (None, None)
@@ -92,6 +105,8 @@ def main():
     # Standardize dates
     df["prescription_date"] = pd.to_datetime(df["prescription_date"], errors="coerce").dt.strftime("%Y-%m-%d")
 
+
+# Parse medication text into structured fields 
     active, dosages, units = [], [], []
     for txt in df["medication_text"].fillna(""):
         ai = standardize_active_ingredient(txt)
