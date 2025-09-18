@@ -1,0 +1,9 @@
+patient_id,prescription_date,medication_text,active_ingredient,dosage,unit
+PAT-001,2024-08-15,Ibuprofen AL 400mg,Ibuprofen,400,mg
+PAT-002,2024-08-16,Aspirin 100,Aspirin,100,mg
+PAT-001,2024-08-20,Amoxicillin 1000 mg Filmtabletten,Amoxicillin,1000,mg
+PAT-003,2024-08-21,Metformin-ratiopharm 500,Metformin,500,mg
+PAT-002,2024-08-22,L-Thyroxin 75 microgram,L-Thyroxin,75,microgram
+PAT-004,2024-08-23,Diclofenac Gel (120g Tube),Diclofenac,,
+PAT-001,2024-08-25,Ibu 600,Ibuprofen,600,mg
+PAT-003,2024-08-26,Metformin 0.5g,Metformin,0.5,g
