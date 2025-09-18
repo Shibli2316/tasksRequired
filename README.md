@@ -103,6 +103,8 @@ Main challenges: cost, latency, and reliability. API calls cost money and latenc
 1. forcing structured outputs with validation rules, 
 2. falling back to rule-based parsing when the model's confidence is low, and 
 3. adding a human-in-the-loop review for low-confidence or high-impact records. For highly sensitive clinical data, consider an on-prem or private LLM (or de-identified inputs) to satisfy privacy/regulatory requirements.
+
+<br>
 To implement it we need 
 1. good prompt engineering with exact specifications  Example final-instruction: “Return only JSON with keys: active_ingredient, dosage, unit, form, confidence (0–1). If no dosage, set dosage=null and unit=null.”
 2. Validation so that it dosent make a mistake including a human if needed, so that the dosage remain in limit and it dosent go beyond the range checks.
