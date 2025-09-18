@@ -41,7 +41,7 @@ The script expects a CSV file named **`prescriptions.csv`** in the same director
 |-------------------|----------------------------------|
 | 2021-03-12        | Ibuprofen 400mg Filmtabletten    |
 | 2021-04-01        | Amoxicillin 500 mg Capsules      |
-| 2021-04-10        | Diclofenac Gel 1%                |
+| 2021-04-10        | Diclofenac Gel 120 gm            |
 | 2021-05-05        | Metformin-ratiopharm 850mg       |
 
 
@@ -62,7 +62,7 @@ The cleaned data will be written to **`prescriptions_clean.csv`**, including str
 |-------------------|----------------------------------|-------------------|--------|------|
 | 2021-03-12        | Ibuprofen 400mg Filmtabletten    | Ibuprofen         | 400    | mg   |
 | 2021-04-01        | Amoxicillin 500 mg Capsules      | Amoxicillin       | 500    | mg   |
-| 2021-04-10        | Diclofenac Gel 1%                | Diclofenac        |        |      |
+| 2021-04-10        | Diclofenac Gel Tube              | Diclofenac        |        |      |
 | 2021-05-05        | Metformin-ratiopharm 850mg       | Metformin         | 850    | mg   |
 
 
