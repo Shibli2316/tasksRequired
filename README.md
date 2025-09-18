@@ -37,6 +37,12 @@ The script expects a CSV file named **`prescriptions.csv`** in the same director
 - `medication_text` — raw string of the medication description
 
 **Example input (`prescriptions.csv`):**
+| prescription_date | medication_text                  |
+|-------------------|----------------------------------|
+| 2021-03-12        | Ibuprofen 400mg Filmtabletten    |
+| 2021-04-01        | Amoxicillin 500 mg Capsules      |
+| 2021-04-10        | Diclofenac Gel 1%                |
+| 2021-05-05        | Metformin-ratiopharm 850mg       |
 
 
 
@@ -52,6 +58,12 @@ The cleaned data will be written to **`prescriptions_clean.csv`**, including str
 - `unit`
 
 **Example output (`prescriptions_clean.csv`):**
+| prescription_date | medication_text                  | active_ingredient | dosage | unit |
+|-------------------|----------------------------------|-------------------|--------|------|
+| 2021-03-12        | Ibuprofen 400mg Filmtabletten    | Ibuprofen         | 400    | mg   |
+| 2021-04-01        | Amoxicillin 500 mg Capsules      | Amoxicillin       | 500    | mg   |
+| 2021-04-10        | Diclofenac Gel 1%                | Diclofenac        |        |      |
+| 2021-05-05        | Metformin-ratiopharm 850mg       | Metformin         | 850    | mg   |
 
 
 
