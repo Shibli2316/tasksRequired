@@ -94,6 +94,19 @@ This will:
 
 
 
+## Answer to Bonus Question 
+Indeed the rule based system that i have designed may work efficiently with less or limited data but once the data starts to exceed human expectations (millions or billions of data points) the script will most likely break as python in itself have many limitations with large dataset. I may choose to switch over to spark for handling real time large dataset but when it comes to LLM’s like Gemini or ChatGPT leveraging their power will be a huge step as they are trained with unprecedented datasets that includes the knowledge about all the medical chemicals and names that even a doctor may not be well aware of and that too from all around the world. It can very easily handle the misspelled data (unlike this script) it can also help in define the medication based on past knowledge and current situation. And help in understanding patterns that are unseen or seen better. 
+<br>
+But since any LLM with sufficient data can halucinate or simply make up answers it is important to keep it in check and to do so we would need to make a structured prompt or API interface where we can pass the dosage and it would identify ingredient, dosage units etc. We can easily leverage the power of transfer learning into this as the LLM is already trained in a general and larger dataset we can just train it into our smaller dataset. It will reduce the cost and time it would need to train a complete LLM and it will benefit us for the specific task we need. This might be done by providing a few annotated examples and asking the model to extract the relevant fields for each prescription entry. The LLM could be used in a batch processing pipeline, integrating with existing data cleaning steps or as an augmentation to flag cases with uncertainty for human review.
+<br>
+Main challenges: cost, latency, and reliability. API calls cost money and latency increases by caching every resolved medication string and batching many examples into one call. We can also use a lookup database (RxNorm / local pharmacopeia) to confirm or replace the LLM's candidate mapping. Another major challenge as already mentioned  is hallucination: LLMs may invent doses or codes if not constrained. To overcome this i propose the following solutions
+(a) forcing structured outputs with validation rules, 
+(b) falling back to rule-based parsing when the model's confidence is low, and 
+(c) adding a human-in-the-loop review for low-confidence or high-impact records. For highly sensitive clinical data, consider an on-prem or private LLM (or de-identified inputs) to satisfy privacy/regulatory requirements.
+To implement it we need 
+1. good prompt engineering with exact specifications  Example final-instruction: “Return only JSON with keys: active_ingredient, dosage, unit, form, confidence (0–1). If no dosage, set dosage=null and unit=null.”
+2. Validation so that it dosent make a mistake including a human if needed, so that the dosage remain in limit and it dosent go beyond the range checks.
+3. And for precision a temperature of 0
 
 
 
